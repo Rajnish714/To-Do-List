@@ -1,8 +1,12 @@
 {
   "dependencies": {
     "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
+    "init": "^0.1.2",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.9.0",
     "request": "^2.88.2"
   },
   "name": "todo-list",
@@ -13,5 +17,14 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rajnish714/To-Do-List.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Rajnish714/To-Do-List/issues"
+  },
+  "homepage": "https://github.com/Rajnish714/To-Do-List#readme",
+  "devDependencies": {},
   "description": ""
 }
