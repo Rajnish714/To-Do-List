@@ -21,14 +21,15 @@
             </form>
             <% }) %>
 
+                <div class="formstyle">
+                    <form class="item" action="/" method="post">
 
-                <form class="item" action="/" method="post">
+                        <input type="text" class="input" name="newItem" id="inp" placeholder="Add Item">
 
-                    <input type="text" class="input" name="newItem" id="inp" placeholder="Add Item">
+                        <button type="submit" class="button" name="list" value=<%=listTitle %> >+</button>
 
-                    <button type="submit" class="button" name="list" value=<%=listTitle %> >+</button>
-
-                </form>
+                    </form>
+                </div>
     </div>
 
     <script src="js/form.js"></script>

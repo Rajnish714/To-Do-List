@@ -66,6 +66,7 @@ button {
     font-size: 30px;
     padding-bottom: 6px;
     border-width: 0;
+
 }
 
 button:hover {
@@ -98,4 +99,28 @@ footer {
     color: white;
     color: rgba(0, 0, 0, 0.5);
     text-align: center;
+}
+
+
+@media screen and (max-width: 992px) {
+    html {
+        min-height: 100%;
+    }
+
+
+    .box {
+        max-width: 90%;
+        margin: 50px auto;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+    }
+
+
+    .formstyle {
+
+        text-align: justify;
+
+    }
+
 }

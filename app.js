@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 mongoose.set('strictQuery', false);
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(`${process.env.MONGO_URI}retryWrites=true&w=majority`);
 
 const itemSchema = {
     name: String
@@ -49,6 +49,7 @@ app.get("/", (req, res) => {
                 } else {
                     console.log("data inserted!");
                 }
+
             })
             res.redirect("/")
         } else {
@@ -59,6 +60,30 @@ app.get("/", (req, res) => {
     })
 
 })
+    .post("/", (req, res) => {
+
+        const itemName = req.body.newItem
+        const listName = req.body.list
+        const item = new Item({
+            name: itemName
+        })
+        if (listName === "Today") {
+            item.save()
+            res.redirect("/");
+        } else {
+
+            List.findOne({ name: listName }, (err, foundList) => {
+
+                foundList.items.push(item)
+                foundList.save();
+                res.redirect("/" + listName)
+
+
+            });
+        }
+
+
+    });
 
 
 app.get("/:customItemList", (req, res) => {
@@ -82,32 +107,6 @@ app.get("/:customItemList", (req, res) => {
     })
 
 })
-
-app.post("/", (req, res) => {
-
-    const itemName = req.body.newItem
-    const listName = req.body.list
-    const item = new Item({
-        name: itemName
-    })
-    if (listName === "Today") {
-        item.save()
-        res.redirect("/");
-    } else {
-
-        List.findOne({ name: listName }, (err, foundList) => {
-
-            foundList.items.push(item)
-            foundList.save();
-            res.redirect("/" + listName)
-
-
-        });
-    }
-
-
-});
-
 
 app.post("/delete", (req, res) => {
 
@@ -139,6 +138,6 @@ app.post("/delete", (req, res) => {
 
 
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log("server has started!")
 })
